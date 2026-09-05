@@ -1,0 +1,12 @@
+[user]
+    name = Sudeep Patgar
+    email = patgarsudeep430@gmail.com
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+
+[color]
+    ui = auto

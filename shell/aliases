@@ -1,0 +1,23 @@
+alias ll='ls -alF'
+
+alias la='ls -A'
+
+alias l='ls -CF'
+
+alias gs='git status'
+
+alias gp='git pull'
+
+alias gpu='git push'
+
+alias gc='git commit'
+
+alias gl='git log --oneline --graph --decorate'
+
+alias dps='docker ps'
+
+alias di='docker images'
+
+alias dc='docker compose'
+
+alias cls='clear'
