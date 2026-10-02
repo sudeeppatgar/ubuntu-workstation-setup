@@ -1,0 +1,8 @@
+[/]
+focus-active-notification=@as []
+screenshot=@as []
+screenshot-window=@as []
+show-screen-recording-ui=@as []
+show-screenshot-ui=['<Super>s']
+toggle-message-tray=@as []
+toggle-quick-settings=@as []

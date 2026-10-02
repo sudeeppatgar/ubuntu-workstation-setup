@@ -1,12 +1,23 @@
-[user]
-    name = Sudeep Patgar
-    email = patgarsudeep430@gmail.com
-
 [init]
     defaultBranch = main
 
 [pull]
     rebase = false
 
+[merge]
+    conflictStyle = zdiff3
+
 [color]
     ui = auto
+
+[fetch]
+    prune = true
+
+[alias]
+    st = status
+    br = branch
+    co = checkout
+    sw = switch
+    ci = commit
+    last = log -1 HEAD
+    graph = log --graph --oneline --decorate --all

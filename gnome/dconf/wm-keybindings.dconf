@@ -1,0 +1,7 @@
+[/]
+begin-move=['<Super>m']
+close=['<Super>c']
+panel-run-dialog=@as []
+show-desktop=@as []
+toggle-fullscreen=['<Super>f']
+toggle-maximized=['<Alt>f']

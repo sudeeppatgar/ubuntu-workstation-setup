@@ -1,22 +1,28 @@
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
 
+# Node.js
 node_modules/
 
+# Build output
 dist/
-
 build/
 
+# Test coverage
 coverage/
 
+# Logs
 *.log
 
+# Environment files
 .env
-
 .env.*
 
-.vscode/settings.json
-
+# IDE
 .idea/
 
+# Temporary files
 *.tmp

@@ -1,3 +1,15 @@
-source ~/dotfiles/shell/aliases
+# Sudeep's Bash configuration
 
-source ~/dotfiles/shell/functions
+SHELL_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+# Aliases
+[ -f "$SHELL_DIR/aliases" ] && source "$SHELL_DIR/aliases"
+
+# Environment variables
+[ -f "$SHELL_DIR/exports" ] && source "$SHELL_DIR/exports"
+
+# Functions
+[ -f "$SHELL_DIR/functions" ] && source "$SHELL_DIR/functions"
+
+# Prompt
+[ -f "$SHELL_DIR/prompt" ] && source "$SHELL_DIR/prompt"

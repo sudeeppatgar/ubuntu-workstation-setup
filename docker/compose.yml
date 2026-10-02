@@ -1,0 +1,231 @@
+name: dev-services
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: no
+
+    env_file:
+      - .env
+
+    environment:
+      TZ: ${TZ}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    ports:
+      - "127.0.0.1:5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - dev-network
+
+  redis:
+    image: redis:8
+    container_name: redis
+    restart: no
+
+    env_file:
+      - .env
+
+    command:
+      - redis-server
+      - --requirepass
+      - ${REDIS_PASSWORD}
+
+    ports:
+      - "127.0.0.1:6379:6379"
+
+    volumes:
+      - redis_data:/data
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "PING"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - dev-network
+
+  mongodb:
+    image: mongo:8.0.17
+    container_name: mongodb
+    restart: no
+
+    env_file:
+      - .env
+
+    environment:
+      TZ: ${TZ}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+
+    ports:
+      - "127.0.0.1:27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'echo ''db.runCommand("ping").ok'' | mongosh -u ${MONGO_USER} -p ${MONGO_PASSWORD} --authenticationDatabase admin localhost/admin --quiet',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - dev-network
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    restart: no
+
+    env_file:
+      - .env
+
+    environment:
+      TZ: ${TZ}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - dev-network
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: no
+
+    env_file:
+      - .env
+
+    command:
+      - server
+      - /data
+      - --console-address
+      - ":9001"
+
+    environment:
+      TZ: ${TZ}
+      MINIO_ROOT_USER: ${MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD}
+
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+
+    volumes:
+      - minio_data:/data
+
+    networks:
+      - dev-network
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    container_name: meilisearch
+    restart: no
+
+    env_file:
+      - .env
+
+    environment:
+      TZ: ${TZ}
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+
+    ports:
+      - "127.0.0.1:7700:7700"
+
+    volumes:
+      - meili_data:/meili_data
+
+    networks:
+      - dev-network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: no
+
+    ports:
+      - "127.0.0.1:11434:11434"
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+    networks:
+      - dev-network
+
+  omniroute:
+    image: diegosouzapw/omniroute:next
+    container_name: omniroute
+    restart: no
+
+    ports:
+      - "127.0.0.1:20128:20128"
+
+    environment:
+      DATA_DIR: /app/data
+      PORT: 20128
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_BASE_URL: http://localhost:20128
+      APP_LOG_TO_FILE: "true"
+      STORAGE_ENCRYPTION_KEY: ${STORAGE_ENCRYPTION_KEY}
+
+    volumes:
+      - omniroute_data:/app/data
+
+    networks:
+      - dev-network
+
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  redis_data:
+  mongodb_data:
+  rabbitmq_data:
+  minio_data:
+  meili_data:
+  ollama_data:
+  omniroute_data:
+
+networks:
+  dev-network:
+    external: true

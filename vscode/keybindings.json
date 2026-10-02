@@ -1,0 +1,77 @@
+[
+  // 🎛 Command Palette
+  {
+    "key": "ctrl+shift+space",
+    "command": "workbench.action.showCommands",
+  },
+
+  // 📂 Toggle Sidebar (Finder style)
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleSidebarVisibility",
+  },
+
+  // 📁 Explorer Focus
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.view.explorer",
+  },
+
+  // 🔄 Switch Between Open Files (Fast)
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor",
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor",
+  },
+
+  // 🪟 Split Editor (Mac style)
+  {
+    "key": "ctrl+\\",
+    "command": "workbench.action.splitEditor",
+  },
+
+  // ❌ Close File
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor",
+  },
+
+  // ♻ Reopen Closed File
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.action.reopenClosedEditor",
+  },
+
+  // 🖥 Toggle Terminal
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal",
+  },
+
+  // 🚀 Quick File Switch (Ultra Fast Mode)
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen",
+  },
+
+  // 🔎 Global Search
+  {
+    "key": "ctrl+shift+f",
+    "command": "workbench.action.findInFiles",
+  },
+
+  // 🔄 Reload Window
+  {
+    "key": "ctrl+alt+r",
+    "command": "workbench.action.reloadWindow",
+  },
+
+  // 🧹 Organize Imports
+  {
+    "key": "ctrl+shift+o",
+    "command": "editor.action.organizeImports",
+  },
+]

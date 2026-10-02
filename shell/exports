@@ -1,0 +1,21 @@
+# Editor
+
+export EDITOR=code
+
+# Browser
+
+export BROWSER=google-chrome
+
+# History
+
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+
+# pnpm
+
+export PNPM_HOME="$HOME/.local/share/pnpm"
+
+case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+esac

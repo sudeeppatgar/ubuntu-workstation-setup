@@ -1,0 +1,4 @@
+clipboard-indicator@tudmotu.com
+desktop-cube@schneegans.github.com
+compiz-alike-magic-lamp-effect@hermes83.github.com
+kiwi@kemma
