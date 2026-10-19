@@ -169,8 +169,6 @@ else
         echo
     done
 
-    STORAGE_ENCRYPTION_KEY="$(openssl rand -hex 32)"
-
     cat > "$DOCKER_DIR/.env" <<ENV
 TZ=Asia/Kolkata
 
@@ -193,8 +191,6 @@ MINIO_PASSWORD=$DEV_PASSWORD
 REDIS_PASSWORD=$DEV_PASSWORD
 
 MEILI_MASTER_KEY=$DEV_PASSWORD
-
-STORAGE_ENCRYPTION_KEY=$STORAGE_ENCRYPTION_KEY
 ENV
 
     chmod 600 "$DOCKER_DIR/.env"

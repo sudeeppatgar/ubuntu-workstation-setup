@@ -34,8 +34,6 @@ Follow a specific service:
     docker compose logs -f rabbitmq
     docker compose logs -f minio
     docker compose logs -f meilisearch
-    docker compose logs -f ollama
-    docker compose logs -f omniroute
 
 ## Services
 
@@ -49,8 +47,6 @@ Follow a specific service:
 | MinIO API | `http://localhost:9000` |
 | MinIO Console | `http://localhost:9001` |
 | Meilisearch | `http://localhost:7700` |
-| Ollama | `http://localhost:11434` |
-| OmniRoute | `http://localhost:20128` |
 
 ## Environment
 

@@ -169,53 +169,6 @@ services:
     networks:
       - dev-network
 
-  ollama:
-    image: ollama/ollama:latest
-    container_name: ollama
-    restart: no
-
-    ports:
-      - "127.0.0.1:11434:11434"
-
-    volumes:
-      - ollama_data:/root/.ollama
-
-    healthcheck:
-      test: ["CMD", "ollama", "list"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
-    networks:
-      - dev-network
-
-  omniroute:
-    image: diegosouzapw/omniroute:next
-    container_name: omniroute
-    restart: no
-
-    ports:
-      - "127.0.0.1:20128:20128"
-
-    environment:
-      DATA_DIR: /app/data
-      PORT: 20128
-      NODE_ENV: production
-      HOSTNAME: 0.0.0.0
-      NEXT_PUBLIC_BASE_URL: http://localhost:20128
-      APP_LOG_TO_FILE: "true"
-      STORAGE_ENCRYPTION_KEY: ${STORAGE_ENCRYPTION_KEY}
-
-    volumes:
-      - omniroute_data:/app/data
-
-    networks:
-      - dev-network
-
-    depends_on:
-      ollama:
-        condition: service_healthy
-
 volumes:
   postgres_data:
   redis_data:
@@ -223,8 +176,6 @@ volumes:
   rabbitmq_data:
   minio_data:
   meili_data:
-  ollama_data:
-  omniroute_data:
 
 networks:
   dev-network:
