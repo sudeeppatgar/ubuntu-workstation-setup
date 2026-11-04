@@ -2,6 +2,8 @@
 
 set -u
 
+DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
 echo
 echo "=============================================="
 echo "   Development Workstation Health Check"
@@ -46,7 +48,6 @@ check_command "Node.js" node
 check_command "npm" npm
 check_command "pnpm" pnpm
 check_command "OpenCode" opencode
-check_command "VS Code" code
 check_command "Google Chrome" google-chrome
 check_command "VLC" vlc
 check_command "Docker" docker
@@ -138,33 +139,26 @@ fi
 echo
 echo "=== Dotfiles ==="
 
-check_path "Git config" "$HOME/dotfiles/git/gitconfig"
-check_path "Global Git ignore" "$HOME/dotfiles/git/gitignore_global"
-check_path "Shell config" "$HOME/dotfiles/shell/bashrc"
-check_path "Shell aliases" "$HOME/dotfiles/shell/aliases"
-check_path "Shell exports" "$HOME/dotfiles/shell/exports"
-check_path "Shell functions" "$HOME/dotfiles/shell/functions"
-check_path "Shell prompt" "$HOME/dotfiles/shell/prompt"
-
-echo
-echo "=== VS Code ==="
-
-check_path "VS Code settings" "$HOME/dotfiles/vscode/settings.json"
-check_path "VS Code keybindings" "$HOME/dotfiles/vscode/keybindings.json"
-check_path "VS Code extensions list" "$HOME/dotfiles/vscode/extensions.txt"
+check_path "Git config" "$DOTFILES_DIR/git/gitconfig"
+check_path "Global Git ignore" "$DOTFILES_DIR/git/gitignore_global"
+check_path "Shell config" "$DOTFILES_DIR/shell/bashrc"
+check_path "Shell aliases" "$DOTFILES_DIR/shell/aliases"
+check_path "Shell exports" "$DOTFILES_DIR/shell/exports"
+check_path "Shell functions" "$DOTFILES_DIR/shell/functions"
+check_path "Shell prompt" "$DOTFILES_DIR/shell/prompt"
 
 echo
 echo "=== Docker configuration ==="
 
-check_path "Docker Compose" "$HOME/dotfiles/docker/compose.yml"
-check_path "Docker daemon config" "$HOME/dotfiles/docker/daemon.json"
-check_path "Docker env example" "$HOME/dotfiles/docker/.env.example"
+check_path "Docker Compose" "$DOTFILES_DIR/docker/compose.yml"
+check_path "Docker daemon config" "$DOTFILES_DIR/docker/daemon.json"
+check_path "Docker env example" "$DOTFILES_DIR/docker/.env.example"
 
-if [[ -f "$HOME/dotfiles/docker/.env" ]]; then
+if [[ -f "$DOTFILES_DIR/docker/.env" ]]; then
     echo "✓ Docker local environment: configured"
     PASS=$((PASS + 1))
 
-    PERMISSIONS="$(stat -c '%a' "$HOME/dotfiles/docker/.env")"
+    PERMISSIONS="$(stat -c '%a' "$DOTFILES_DIR/docker/.env")"
     if [[ "$PERMISSIONS" == "600" ]]; then
         echo "✓ Docker local environment permissions: 600"
         PASS=$((PASS + 1))
@@ -203,13 +197,13 @@ if command -v gnome-shell >/dev/null 2>&1; then
         echo "✗ GNOME extension disabled: $extension"
         ((FAIL+=1))
     fi
-done < "$HOME/dotfiles/gnome/extensions.txt"
+ done < "$DOTFILES_DIR/gnome/extensions.txt"
 
-    check_path "Desktop Cube config" "$HOME/dotfiles/gnome/dconf/desktop-cube.dconf"
-    check_path "Window shortcuts config" "$HOME/dotfiles/gnome/dconf/wm-keybindings.dconf"
-    check_path "Shell shortcuts config" "$HOME/dotfiles/gnome/dconf/shell-keybindings.dconf"
-    check_path "Desktop Cube wallpaper" "$HOME/dotfiles/gnome/wallpapers/skyblue.png"
-    check_path "Ubuntu wallpaper" "$HOME/dotfiles/gnome/wallpapers/wallpaper.png"
+    check_path "Desktop Cube config" "$DOTFILES_DIR/gnome/dconf/desktop-cube.dconf"
+    check_path "Window shortcuts config" "$DOTFILES_DIR/gnome/dconf/wm-keybindings.dconf"
+    check_path "Shell shortcuts config" "$DOTFILES_DIR/gnome/dconf/shell-keybindings.dconf"
+    check_path "Desktop Cube wallpaper" "$DOTFILES_DIR/gnome/wallpapers/skyblue.png"
+    check_path "Ubuntu wallpaper" "$DOTFILES_DIR/gnome/wallpapers/wallpaper.png"
 else
     echo "⚠ GNOME Shell not detected"
     ((WARN+=1))

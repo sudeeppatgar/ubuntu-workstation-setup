@@ -56,7 +56,3 @@ alias pd='pnpm dev'
 alias c='clear'
 alias h='history'
 alias reload='source ~/.bashrc'
-
-# VS Code
-
-alias code.='code .'

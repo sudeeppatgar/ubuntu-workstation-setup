@@ -67,7 +67,6 @@ MODULES=(
     packages.sh
     docker.sh
     node.sh
-    vscode.sh
     git.sh
     github.sh
     shell.sh
