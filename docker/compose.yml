@@ -212,8 +212,6 @@ volumes:
   redis_data:
   mongodb_data:
   rabbitmq_data:
-  minio_data:
-  meili_data:
   redisinsight_data:
   pgadmin_data:
   seaweedfs_data:

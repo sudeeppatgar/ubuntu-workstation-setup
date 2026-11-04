@@ -154,8 +154,13 @@ else
     DEV_USER="${DEV_USER:-$DEFAULT_USER}"
 
     while true; do
-        read -r -s -p "Local development password: " DEV_PASSWORD
+    read -r -s -p "Local development password: " DEV_PASSWORD
         echo
+
+        if [[ -z "$DEV_PASSWORD" ]]; then
+            echo "Password must not be empty."
+            continue
+        fi
 
         read -r -s -p "Confirm password: " DEV_PASSWORD_CONFIRM
         echo
@@ -175,6 +180,13 @@ TZ=Asia/Kolkata
 DEV_USER=$DEV_USER
 DEV_PASSWORD=$DEV_PASSWORD
 
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=$DEV_PASSWORD
+
+S3_ACCESS_KEY=devstorage
+S3_SECRET_KEY=$DEV_PASSWORD
+S3_BUCKET=dev-bucket
+
 POSTGRES_USER=$DEV_USER
 POSTGRES_PASSWORD=$DEV_PASSWORD
 POSTGRES_DB=devdb
@@ -185,12 +197,7 @@ MONGO_PASSWORD=$DEV_PASSWORD
 RABBITMQ_USER=$DEV_USER
 RABBITMQ_PASSWORD=$DEV_PASSWORD
 
-MINIO_USER=$DEV_USER
-MINIO_PASSWORD=$DEV_PASSWORD
-
 REDIS_PASSWORD=$DEV_PASSWORD
-
-MEILI_MASTER_KEY=$DEV_PASSWORD
 ENV
 
     chmod 600 "$DOCKER_DIR/.env"
