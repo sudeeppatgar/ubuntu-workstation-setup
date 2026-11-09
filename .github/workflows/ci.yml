@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          version: v0.10.0
+
+  syntax:
+    name: Bash syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check syntax of all shell scripts
+        run: |
+          scripts=("*.sh" "scripts/*.sh" "shell/*")
+          fail=0
+          for pattern in "${scripts[@]}"; do
+            for f in $pattern; do
+              echo "Checking $f"
+              if ! bash -n "$f"; then
+                fail=1
+              fi
+            done
+          done
+          exit $fail

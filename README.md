@@ -1,5 +1,7 @@
 # Ubuntu Workstation Setup
 
+[![CI](https://github.com/sudeeppatgar/ubuntu-workstation-setup/actions/workflows/ci.yml/badge.svg)](https://github.com/sudeeppatgar/ubuntu-workstation-setup/actions/workflows/ci.yml)
+
 Personal workstation bootstrap and dotfiles for setting up an Ubuntu development machine. The repository automates common packages, developer tools, shell and Git preferences, optional local Docker services, GNOME customization, and a standard workspace directory layout.
 
 ## Supported system

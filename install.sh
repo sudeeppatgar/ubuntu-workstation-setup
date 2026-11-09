@@ -3,6 +3,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DOTFILES_DIR
 
 echo
 echo "=============================================="
@@ -21,6 +22,7 @@ if [[ ! -f /etc/os-release ]]; then
     exit 1
 fi
 
+# shellcheck disable=SC1091
 source /etc/os-release
 
 if [[ "${ID:-}" != "ubuntu" ]]; then
@@ -94,7 +96,7 @@ run_module() {
     echo "----------------------------------------------"
     echo
 
-    DOTFILES_DIR="$DOTFILES_DIR" bash "$DOTFILES_DIR/scripts/$module"
+    bash "$DOTFILES_DIR/scripts/$module"
 }
 
 for module in "${MODULES[@]}"; do
