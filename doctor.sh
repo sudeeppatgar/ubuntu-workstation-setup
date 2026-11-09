@@ -215,9 +215,7 @@ echo "=== Workspace ==="
 check_path "Work workspace" "$HOME/Workspace/Work"
 check_path "Personal workspace" "$HOME/Workspace/Personal"
 check_path "Learning workspace" "$HOME/Workspace/Learning"
-check_path "Archive workspace" "$HOME/Workspace/Archive"
-check_path "Boeing workspace" "$HOME/Workspace/Boeing"
-
+  check_path "Archive workspace" "$HOME/Workspace/Archive"
 echo
 echo "=============================================="
 echo "Passed:   $PASS"

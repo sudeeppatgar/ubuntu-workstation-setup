@@ -39,7 +39,7 @@ To run an individual module, execute its script from the repository root, for ex
 - **GitHub and SSH:** optional personal Ed25519 key and a `github-personal` SSH host entry. GitHub CLI login remains an interactive user action (`gh auth login`).
 - **Bash:** sources the managed configuration from `shell/` through a marked block in `~/.bashrc`, preserving a backup of the prior file.
 - **GNOME:** listed GNOME Shell extensions, keyboard shortcuts, dock and Desktop Cube dconf settings, WhiteSur icons, and wallpapers.
-- **Workspaces:** creates `~/Workspace/{Work,Personal,Learning,Archive,Boeing}`.
+- **Workspaces:** creates `~/Workspace/{Work,Personal,Learning,Archive}`.
 - **Docker development environment:** creates a private `.env`, configures the daemon, enables Docker, and creates the external `dev-network` network.
 
 ## Repository layout

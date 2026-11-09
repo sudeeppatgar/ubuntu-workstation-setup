@@ -12,8 +12,7 @@ mkdir -p \
     "$WORKSPACE/Work" \
     "$WORKSPACE/Personal" \
     "$WORKSPACE/Learning" \
-    "$WORKSPACE/Archive" \
-    "$WORKSPACE/Boeing"
+    "$WORKSPACE/Archive"
 
 echo
 echo "Workspace ready:"
@@ -22,4 +21,3 @@ echo "  $WORKSPACE/Work"
 echo "  $WORKSPACE/Personal"
 echo "  $WORKSPACE/Learning"
 echo "  $WORKSPACE/Archive"
-echo "  $WORKSPACE/Boeing"
