@@ -52,7 +52,8 @@ To run an individual module, execute its script from the repository root, for ex
 ├── shell/              # Bash aliases, functions, exports, and prompt
 ├── git/                # Git configuration and global ignore rules
 ├── gnome/              # dconf settings, extension list, and wallpapers
-└── docker/             # Compose stack, daemon settings, and env template
+├── docker/             # Compose stack, daemon settings, and env template
+└── LICENSE             # MIT license
 ```
 
 ## Local Docker services
@@ -73,3 +74,7 @@ Keep `docker/.env` private; it is ignored by Git. The Compose network is declare
 ## Health check
 
 `./doctor.sh` reports available tools, Docker access and network state, Git identity, repository configuration files, GNOME extension state, and expected workspace directories. Some items such as GitHub authentication and Docker environment setup are optional until configured.
+
+## License
+
+[MIT](LICENSE) © Sudeep Patgar
