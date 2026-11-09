@@ -110,6 +110,8 @@ else
 
     cp "$LIBSECRET_SOURCE" "$TEMP_DIR/git-credential-libsecret.c"
 
+    # pkg-config output must be split into separate compiler flags
+    # shellcheck disable=SC2046
     cc \
         "$TEMP_DIR/git-credential-libsecret.c" \
         -o "$TEMP_DIR/git-credential-libsecret" \
